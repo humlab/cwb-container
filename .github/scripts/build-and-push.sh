@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+include .env
+export
+
 VERSION=$1
 if [ -z "$VERSION" ]; then
   echo "Version argument is missing!"
