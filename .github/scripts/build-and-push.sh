@@ -1,10 +1,6 @@
 #!/bin/bash
 set -e
 
-set -o allexport
-source .env
-set +o allexport
-
 VERSION=$1
 if [ -z "$VERSION" ]; then
   echo "Version argument is missing!"
