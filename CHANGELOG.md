@@ -4,6 +4,12 @@
 > All notable changes to this project will be documented in this file
 
 
+## [1.1.3](https://github.com/humlab/cwb-container/compare/v1.1.2...v1.1.3) (2025-06-08)
+
+### 🐛 Bug Fixes
+
+* remove unused environment variable exports in build-and-push script and update release workflow to include GITHUB_REPOSITORY ([f332ad5](https://github.com/humlab/cwb-container/commit/f332ad50f7d72b31e76e5422d337b144ac9d53ac))
+
 ## [1.1.2](https://github.com/humlab/cwb-container/compare/v1.1.1...v1.1.2) (2025-06-08)
 
 ### 🐛 Bug Fixes
