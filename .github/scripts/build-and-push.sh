@@ -2,8 +2,8 @@
 set -e
 
 set -o allexport
-source .env set
-+o allexport
+source .env
+set +o allexport
 
 VERSION=$1
 if [ -z "$VERSION" ]; then
