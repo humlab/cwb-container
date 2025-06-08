@@ -4,6 +4,12 @@
 > All notable changes to this project will be documented in this file
 
 
+## [1.1.2](https://github.com/humlab/cwb-container/compare/v1.1.1...v1.1.2) (2025-06-08)
+
+### 🐛 Bug Fixes
+
+* correct syntax for sourcing environment variables in build-and-push script ([c5a5d34](https://github.com/humlab/cwb-container/commit/c5a5d3476580f0e75559a392f0963e2f25a135ea))
+
 ## [1.1.1](https://github.com/humlab/cwb-container/compare/v1.1.0...v1.1.1) (2025-06-08)
 
 ### 🐛 Bug Fixes
