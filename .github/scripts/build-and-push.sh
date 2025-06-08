@@ -15,8 +15,8 @@ echo "${DOCKER_PASSWORD}" | docker login ghcr.io -u "${DOCKER_USERNAME}" --passw
 echo "Building and pushing Container image for version ${VERSION}..."
 
 docker build \
-	--tag $(IMAGE_NAME):latest \
-	--tag $(IMAGE_NAME):$(VERSION) \
+	--tag ${IMAGE_NAME}:latest \
+	--tag ${IMAGE_NAME}:${VERSION} \
 	-f ./Dockerfile .
 
 docker push --all-tags "${IMAGE_NAME}"
