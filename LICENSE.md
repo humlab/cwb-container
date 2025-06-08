@@ -21,7 +21,6 @@ Users of the Docker image produced by this Dockerfile must comply with the terms
 
 For more information about IMS CWB and its license, please visit:
 *   IMS CWB Official Website: https://cwb.sourceforge.io
-*   CWB Source Code / License Information: [Insert Link to CWB Source/License, e.g., within its source tarball or a specific license file]
 
 **It is strongly recommended to verify the exact license terms for the specific version of IMS CWB being installed by this Dockerfile from its official distribution.**
 

@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e
 
-include .env
-export
+set -o allexport
+source .env set
++o allexport
 
 VERSION=$1
 if [ -z "$VERSION" ]; then
