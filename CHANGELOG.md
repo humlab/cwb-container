@@ -4,6 +4,12 @@
 > All notable changes to this project will be documented in this file
 
 
+## [1.1.5](https://github.com/humlab/cwb-container/compare/v1.1.4...v1.1.5) (2026-04-16)
+
+### 🐛 Bug Fixes
+
+* update Python version to 3.13 ([4bdc135](https://github.com/humlab/cwb-container/commit/4bdc1356208e42d76bde5706d05016c7c41e7087))
+
 ## [1.1.4](https://github.com/humlab/cwb-container/compare/v1.1.3...v1.1.4) (2025-06-08)
 
 ### 🐛 Bug Fixes
