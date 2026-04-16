@@ -1,6 +1,6 @@
 ARG PYTHON_VERSION="3.13"
 
-FROM python:${PYTHON_VERSION}-slim AS cwb-builder
+FROM python:${PYTHON_VERSION}-slim-bookworm AS cwb-builder
 
 #####################################################################################
 # CWB build phase (cwb-builder)
@@ -15,7 +15,7 @@ RUN apt-get update -qq \
         build-essential apt-utils pkg-config autoconf bison flex subversion tar wget \
         libpcre3-dev libglib2.0-dev libncurses-dev libncurses5-dev \
         libreadline-dev libc6-dev \
-        && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 # Compile CWB Core & CWB Perl
 
@@ -26,7 +26,8 @@ WORKDIR /src
 #     && rm cwb-dev.deb
 
 RUN set -e && \
-    wget -O cwb-${CWB_VERSION}-src.tar.gz https://sourceforge.net/projects/cwb/files/cwb/cwb-3.5/source/cwb-${CWB_VERSION}-src.tar.gz/download \
+    CWB_SERIES="${CWB_VERSION%.*}" && \
+    wget -O cwb-${CWB_VERSION}-src.tar.gz https://sourceforge.net/projects/cwb/files/cwb/cwb-${CWB_SERIES}/source/cwb-${CWB_VERSION}-src.tar.gz/download \
     && tar -xzvf cwb-${CWB_VERSION}-src.tar.gz \
     && rm cwb-${CWB_VERSION}-src.tar.gz \
     && cd /src/cwb-${CWB_VERSION}-src \
@@ -40,8 +41,8 @@ RUN set -e && \
     && make test \
     && make install
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR /wheels
 
@@ -61,7 +62,7 @@ FROM python:${PYTHON_VERSION}-slim-bookworm AS cwb-image
 
 LABEL maintainer="Roger Mähler <roger dot mahler at umu dot se>"
 
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LD_LIBRARY_PATH=/usr/local/lib
 
@@ -84,16 +85,14 @@ ARG CWB_USER="cwbuser"
 
 RUN addgroup --gid $CWB_GID "${CWB_USER}" && \
     adduser $CWB_USER --home /home/${CWB_USER} --uid $CWB_UID --gid $CWB_GID --disabled-password --gecos '' --shell /bin/bash && \
-    mkdir -p /data && \
+    mkdir -p /data /usr/local/share/cwb/ && \
     chown -R ${CWB_USER}:${CWB_USER} /data && \
     chown -R ${CWB_USER}:${CWB_USER} /usr/local/share/cwb/
 
+USER ${CWB_USER}
 WORKDIR /home/${CWB_USER}
 
 ENV SHELL=/bin/bash
 ENV HOME=/home/${CWB_USER}
-# ENV CORPUS_REGISTRY=/data/registry
 
-ENTRYPOINT [ "/bin/bash" ]
-
-CMD [ "-c", "cqp -h" ]
+CMD [ "/bin/bash" ]
