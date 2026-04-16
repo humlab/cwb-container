@@ -4,6 +4,12 @@
 > All notable changes to this project will be documented in this file
 
 
+## [1.1.6](https://github.com/humlab/cwb-container/compare/v1.1.5...v1.1.6) (2026-04-16)
+
+### 🐛 Bug Fixes
+
+* update Dockerfile to use slim-bookworm ([0914abf](https://github.com/humlab/cwb-container/commit/0914abfa9f6faeb50fa1381abdcafabad07e917f))
+
 ## [1.1.5](https://github.com/humlab/cwb-container/compare/v1.1.4...v1.1.5) (2026-04-16)
 
 ### 🐛 Bug Fixes
