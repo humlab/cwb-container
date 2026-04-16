@@ -4,6 +4,12 @@
 > All notable changes to this project will be documented in this file
 
 
+## [1.1.4](https://github.com/humlab/cwb-container/compare/v1.1.3...v1.1.4) (2025-06-08)
+
+### 🐛 Bug Fixes
+
+* correct syntax for image tagging in build-and-push script and update GITHUB_REPOSITORY reference in release workflow ([e6f25c2](https://github.com/humlab/cwb-container/commit/e6f25c2c004ec8f6bd34d98fe0f451dd5e974678))
+
 ## [1.1.3](https://github.com/humlab/cwb-container/compare/v1.1.2...v1.1.3) (2025-06-08)
 
 ### 🐛 Bug Fixes
