@@ -1,5 +1,4 @@
-
-ARG PYTHON_VERSION="3.12"
+ARG PYTHON_VERSION="3.13"
 
 FROM python:${PYTHON_VERSION}-slim AS cwb-builder
 
@@ -60,6 +59,8 @@ RUN pip install --upgrade pip \
 
 FROM python:${PYTHON_VERSION}-slim-bookworm AS cwb-image
 
+LABEL maintainer="Roger Mähler <roger dot mahler at umu dot se>"
+
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LD_LIBRARY_PATH=/usr/local/lib
@@ -75,12 +76,7 @@ COPY --from=cwb-builder /usr/local/lib/ /usr/local/lib/
 COPY --from=cwb-builder /usr/local/include/ /usr/local/include/
 COPY --from=cwb-builder /wheels /wheels
 
-RUN set -e && \
-    ldconfig && \
-    mkdir -p /usr/local/share/cwb/ && \
-    pip3 install /wheels/*.whl
-
-LABEL maintainer="Roger Mähler <roger dot mahler at umu dot se>"
+RUN ldconfig && pip3 install /wheels/*.whl
 
 ARG CWB_UID="1021"
 ARG CWB_GID="1021"
@@ -94,11 +90,8 @@ RUN addgroup --gid $CWB_GID "${CWB_USER}" && \
 
 WORKDIR /home/${CWB_USER}
 
-USER ${CWB_USER}
-
 ENV SHELL=/bin/bash
 ENV HOME=/home/${CWB_USER}
-
 # ENV CORPUS_REGISTRY=/data/registry
 
 ENTRYPOINT [ "/bin/bash" ]
